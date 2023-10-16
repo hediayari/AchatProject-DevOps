@@ -17,20 +17,20 @@ pipeline {
 
         
         stage('SonarQube analysis') {
-            steps {
-                script {
-                    def projectDir = sh(script: 'pwd', returnStatus: true).trim()
-                    def mvnwScript = "${projectDir}/mvnw"
+    steps {
+        script {
+            def projectDir = sh(script: 'pwd', returnStdout: true).trim()
+            def mvnwScript = "${projectDir}/mvnw"
 
-                    sh "${mvnwScript} clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true"
-                    sh "${mvnwScript} sonar:sonar \
-                        -D sonar.login=admin \
-                        -D sonar.password=vagrant \
-                        -D sonar.projectKey=1stPip \
-                        -D sonar.host.url='http://192.168.1.160:9000'"
-                }
-            }
+            sh "${mvnwScript} clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true"
+            sh "${mvnwScript} sonar:sonar \
+                -D sonar.login=admin \
+                -D sonar.password=vagrant \
+                -D sonar.projectKey=1stPip \
+                -D sonar.host.url=http://192.168.1.160:9000"
         }
+    }
+}
 
 
     }
