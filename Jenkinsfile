@@ -15,20 +15,19 @@ pipeline {
             }
         }
 
-stage('SonarQube Analysis') {
+        
+        stage('SonarQube analysis') {
             steps {
-                script {
-                    def sonarUrl = 'http://192.168.1.160:9000'
-                    def projectName = '1stPip'
-                    def sonarUsername = 'admin'
-                    def sonarPassword = 'vagrant'
-
-                    sh "SonarQube"
-
-                    sh "sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.sources=src -Dsonar.host.url=${sonarUrl} -Dsonar.login=${sonarUsername} -Dsonar.password=${sonarPassword}"
-                }
+                sh "./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true"
+                sh "./mvnw sonar:sonar \
+                    -D sonar.login=admin \
+                    -D sonar.password=vagrant \
+                    -D sonar.projectKey=1stPip \
+                    -D sonar.host.url='http://192.168.1.160:9000"
             }
         }
+
+
     }
 
 
