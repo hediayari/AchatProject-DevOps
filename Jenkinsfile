@@ -23,11 +23,13 @@ stage('SonarQube Analysis') {
                     def sonarUsername = 'admin'
                     def sonarPassword = 'vagrant'
 
+                    sh "SonarQube"
+
                     sh "sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.sources=src -Dsonar.host.url=${sonarUrl} -Dsonar.login=${sonarUsername} -Dsonar.password=${sonarPassword}"
                 }
             }
         }
-    }
+
 
  //   post {
   //      success {
