@@ -15,17 +15,15 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    def scannerScript = "${scannerHome}/bin/sonar-scanner"
-                    def projectName = '1stPip'
                     def sonarUrl = 'http://192.168.1.160:9000'
+                    def projectName = '1stPip'
                     def sonarUsername = 'admin'
                     def sonarPassword = 'vagrant'
 
-                    sh "${scannerScript} -Dsonar.projectKey=${projectName} -Dsonar.sources=src -Dsonar.host.url=${sonarUrl} -Dsonar.login=${sonarUsername} -Dsonar.password=${sonarPassword}"
+                    sh "sonar-scanner -Dsonar.projectKey=${projectName} -Dsonar.sources=src -Dsonar.host.url=${sonarUrl} -Dsonar.login=${sonarUsername} -Dsonar.password=${sonarPassword}"
                 }
             }
         }
