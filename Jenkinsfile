@@ -16,26 +16,27 @@ pipeline {
         }
 
         
-      stage('SonarQube Analysis') {
+     stage('SonarQube analysis') {
     steps {
         script {
             def scannerHome = tool name: 'SonarQube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             def javaHome = tool name: 'JAVA_HOME', type: 'hudson.model.JDK'
 
-            withEnv(["JAVA_HOME=${javaHome}"]) {
+            withEnv(["PATH+JAVA=${javaHome}/bin:${env.PATH}"]) {
                 withSonarQubeEnv('SonarQube') {
                     sh """
                         ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.login=admin \
                         -Dsonar.password=vagrant \
-                        -Dsonar.projectKey=1stPip \
-                        -Dsonar.host.url=http://192.168.1.160:9000
+                        -Dsonar.projectKey=1st_Sonar \
+                        -Dsonar.java.binaries=${javaHome}/bin/java
                     """
                 }
             }
         }
     }
 }
+
 
 
 
