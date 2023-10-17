@@ -29,7 +29,7 @@ stage('SonarQube Analysis') {
                         -Dsonar.login=admin \
                         -Dsonar.password=vagrant \
                         -Dsonar.projectKey=1st_Sonar \
-                        -Dsonar.java.binaries=/path/to/compiled/classes
+                        -Dsonar.java.binaries=target/classeS
                         -Dsonar.host.url=http://192.168.1.160:9000
                     """
                 }
@@ -37,6 +37,7 @@ stage('SonarQube Analysis') {
         }
     }
 }
+
 
 
 
