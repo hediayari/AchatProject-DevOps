@@ -22,7 +22,7 @@ stage('SonarQube Analysis') {
             def scannerHome = tool name: 'SonarQube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             def javaHome = tool name: 'JAVA_HOME', type: 'hudson.model.JDK'
 
-            withEnv(["JAVA_HOME=${javaHome}"]) {
+            withEnv(["JAVA_HOME=${javaHome}", "SONAR_HOST_URL=http://192.168.1.160:9000"]) {
                 withSonarQubeEnv('SonarQube') {
                     sh """
                         ${scannerHome}/bin/sonar-scanner \
@@ -30,13 +30,13 @@ stage('SonarQube Analysis') {
                         -Dsonar.password=vagrant \
                         -Dsonar.projectKey=1st_Sonar \
                         -Dsonar.java.binaries=target/classes
-                        -Dsonar.host.url=http://192.168.1.160:9000
                     """
                 }
             }
         }
     }
 }
+
 
 
 
