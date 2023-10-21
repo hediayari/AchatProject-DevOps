@@ -82,21 +82,6 @@
 		</repository>
 	</distributionManagement>
 
-<settings>
-    <!-- Other Maven settings may be present here -->
-
-    <servers>
-        <server>
-            <id>nexus-releases</id>
-            <username>admin</username>
-            <password>vagrant</password>
-        </server>
-        <!-- Add more servers if necessary -->
-    </servers>
-
-    <!-- Other Maven settings may be present here -->
-</settings>
-
 	
 
 </project>
