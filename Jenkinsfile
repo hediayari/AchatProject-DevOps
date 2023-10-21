@@ -39,7 +39,7 @@ pipeline {
         stage('Build and Deploy to Nexus') {
             steps {
                 script {
-                    sh "mvn deploy -DskipTests=true -DaltDeploymentRepository=deploymentRepo::default::http://192.168.1.160:8081/repository/maven-releases/ -DrepositoryId=deploymentRepo -Dusername=jenkins -Dpassword=jenkins"
+                    sh "mvn deploy -DskipTests=true"
                 }
             }
         }
