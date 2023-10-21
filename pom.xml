@@ -88,8 +88,8 @@
     <servers>
         <server>
             <id>nexus-releases</id>
-            <username>Your-Nexus-Username</username>
-            <password>Your-Nexus-Password</password>
+            <username>admin</username>
+            <password>vagrant</password>
         </server>
         <!-- Add more servers if necessary -->
     </servers>
