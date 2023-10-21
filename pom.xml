@@ -81,13 +81,22 @@
 			<url>http://192.168.1.160:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
-	<servers>
+
+<settings>
+    <!-- Other Maven settings may be present here -->
+
+    <servers>
         <server>
             <id>nexus-releases</id>
-            <username>admin</username>
-            <password>vagrant</password>
+            <username>Your-Nexus-Username</username>
+            <password>Your-Nexus-Password</password>
         </server>
         <!-- Add more servers if necessary -->
     </servers>
+
+    <!-- Other Maven settings may be present here -->
+</settings>
+
+	
 
 </project>
