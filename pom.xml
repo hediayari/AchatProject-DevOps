@@ -78,7 +78,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>maven-releases</name>
-			<url>http://192.168.1.160:8081/repository/maven-releases/</url>
+			<url>http://192.168.1.160:8081/repository/devops/</url>
 		</repository>
 	</distributionManagement>
 
