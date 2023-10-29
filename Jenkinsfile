@@ -48,10 +48,10 @@ pipeline {
             }
         }
 
-       stage('Build Docker Image') {
+                stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE_NAME}")
+                   sh " docker build ${DOCKER_IMAGE_NAME}"
                 }
             }
         }
