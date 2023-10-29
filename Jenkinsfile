@@ -8,9 +8,9 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']])
             }
-        
+        } // <-- Add this closing brace
 
         stage('Clean Maven and Build') {
             steps {
@@ -57,7 +57,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                        docker.image("${DOCKER_IMAGE_NAME}").push()
+                    docker.image("${DOCKER_IMAGE_NAME}").push()
                 }
             }
         }
