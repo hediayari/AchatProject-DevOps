@@ -59,7 +59,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                    sh "docker tag ${DOCKER_IMAGE_NAME} oubaidhl/devops::latest"
+                    sh "docker tag ${DOCKER_IMAGE_NAME} oubaidhl/devops:latest"
                     sh "docker push oubaidhl/devops:latest"
             }
         }
