@@ -1,0 +1,24 @@
+version: '3'
+services:
+  oubaid-app:
+    build: ./
+    ports:
+      - "8089:8089"
+    environment:
+      - SERVER_SERVLET_CONTEXT_PATH=/SpringMVC
+      - SERVER_PORT=8089
+      - SPRING_DATASOURCE_URL=jdbc:mysql://oubaid-db:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=vagrant
+
+  oubaid-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: vagrant
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:

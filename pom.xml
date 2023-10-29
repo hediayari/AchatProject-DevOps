@@ -71,6 +71,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		 <finalName>oubaid-app</finalName>
 	</build>
 
 	<!-- Deploy to Nexus -->
