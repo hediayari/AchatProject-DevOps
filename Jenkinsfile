@@ -4,13 +4,12 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'oubaid-app:latest'
     }
-
     stages {
-        checkout([
-            $class: 'GitSCM',
-            branches: [[name: 'oubaid']],
-              userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]
-])
+        stage('Clone') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]])
+            }
+        }
 
 
         stage('Clean Maven and Build') {
