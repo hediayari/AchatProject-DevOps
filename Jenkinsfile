@@ -59,7 +59,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                    sh "docker push ${DOCKER_IMAGE_NAME}"
+                    sh "docker push ${DOCKER_IMAGE_NAME} oubaidhl/oubaid"
             }
         }
 
