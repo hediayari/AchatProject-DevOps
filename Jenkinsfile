@@ -6,11 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Clone') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']])
-            }
-        } // <-- Add this closing brace
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: 'oubaid']],
+              userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]
+])
+
 
         stage('Clean Maven and Build') {
             steps {
