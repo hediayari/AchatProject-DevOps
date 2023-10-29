@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'oubaid-app:latest'
+        DOCKER_HUB_USERNAME ='oubaidhl' 
+        DOCKER_HUB_PASSWORD = '20271489ABed?!'
     }
     stages {
         stage('Clone') {
@@ -59,6 +61,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
+                    sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
                     sh "docker tag ${DOCKER_IMAGE_NAME} oubaidhl/devops:latest"
                     sh "docker push oubaidhl/devops:latest"
             }
