@@ -1,10 +1,14 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE_NAME = 'oubaid-app:latest'
+    }
+
     stages {
         stage('Clone') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]) // Your Git repository
             }
         }
 
@@ -43,11 +47,31 @@ pipeline {
                 }
             }
         }
-    }
 
-    // post {
-    //     success {
-    //         // to add them in the future :/ like WC 
-    //     }
-    // }
+        stage('Build Docker Compose Services') {
+            steps {
+                sh 'docker-compose build'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                        docker.image("${DOCKER_IMAGE_NAME}").push()
+                }
+            }
+        }
+
+        stage('Remove Docker Compose Containers') {
+            steps {
+                sh 'docker-compose down'
+            }
+        }
+
+        stage('Start Docker Compose') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
+    }
 }
