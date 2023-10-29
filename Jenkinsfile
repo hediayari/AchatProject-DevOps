@@ -10,13 +10,6 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]])
             }
         }
-        stage('Build Docker Compose Services') {
-             steps {
-                 script {
-                  sh '/usr/local/bin/docker-compose build' 
-                }
-          }
-        }
 
 
         stage('Clean Maven and Build') {
