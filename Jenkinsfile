@@ -59,7 +59,8 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                    sh "docker push ${DOCKER_IMAGE_NAME} oubaidhl/oubaid"
+                    sh "docker tag ${DOCKER_IMAGE_NAME} oubaid/oubaid-app:latest"
+                    sh "docker push oubaid/${DOCKER_IMAGE_NAME}"
             }
         }
 
