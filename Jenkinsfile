@@ -48,11 +48,14 @@ pipeline {
             }
         }
 
-        stage('Build Docker Compose Services') {
+       stage('Build Docker Image') {
             steps {
-                sh 'docker-compose build'
+                script {
+                    docker.build("${DOCKER_IMAGE_NAME}")
+                }
             }
         }
+
 
         stage('Push Docker Image') {
             steps {
