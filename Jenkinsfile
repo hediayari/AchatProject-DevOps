@@ -61,11 +61,14 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
+                script {
                     sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
                     sh "docker tag ${DOCKER_IMAGE_NAME} oubaidhl/devops:latest"
                     sh "docker push oubaidhl/devops:latest"
+                }
             }
         }
+
 
         stage('Remove Docker Compose Containers') {
             steps {
