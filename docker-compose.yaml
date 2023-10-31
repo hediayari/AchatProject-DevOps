@@ -1,0 +1,26 @@
+version: '3'
+services:
+  achat-app:
+    image: hedi1708/achat-1.0:1.2
+    container_name: achat-app
+    ports:
+      - "8089:8089"
+    environment:
+      - SERVER_SERVLET_CONTEXT_PATH=/SpringMVC
+      - SERVER_PORT=8089
+      - SPRING_DATASOURCE_URL=jdbc:mysql://achatdb:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+
+  achat-db:
+    image: mysql:latest
+    container_name: app-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:
