@@ -16,7 +16,7 @@ services:
       - achat-db
 
   achat-db:
-    image: mysql:5.7  # Specify a version here
+    image: mysql:latest
     container_name: achat-db
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
