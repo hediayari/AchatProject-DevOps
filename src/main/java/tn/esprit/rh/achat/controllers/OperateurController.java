@@ -31,7 +31,7 @@ public class OperateurController {
 	public Operateur retrieveOperateur(@PathVariable("operateur-id") Long operateurId) {
 		return operateurService.retrieveOperateur(operateurId);
 	}
-
+	@CrossOrigin(origins = "*")
 	// http://localhost:8089/SpringMVC/operateur/add-operateur
 	@PostMapping("/add-operateur")
 	@ResponseBody
