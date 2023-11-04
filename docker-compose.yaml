@@ -21,6 +21,5 @@ services:
       - mysql_data:/var/lib/mysql
     network_mode: "host"
 
-
 volumes:
   mysql_data:
