@@ -80,6 +80,9 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<finalName>nadia-app</finalName>
+
 	</build>
 
 </project>
