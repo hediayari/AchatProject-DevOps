@@ -69,6 +69,7 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
+                    sh "docker login -u \$DOCKER_HUB_USERNAME -p \$DOCKER_HUB_PASSWORD"
                     sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
                 }
             }
