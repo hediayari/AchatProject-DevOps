@@ -3,6 +3,7 @@ services:
   backend:
     image: backend
     container_name: backend
+    restart: unless-stopped
     ports:
       - "8089:8089"
     environment:
@@ -11,7 +12,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-    restart: unless-stopped
     depends_on:
       - db
 
@@ -23,7 +23,7 @@ services:
       MYSQL_DATABASE: achatdb
     volumes:
       - mysql_data:/var/lib/mysql
-     restart: unless-stopped
-
+    restart: unless-stopped
+     
 volumes:
   mysql_data:
