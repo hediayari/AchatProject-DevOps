@@ -70,7 +70,8 @@ pipeline {
             steps {
                 script {
                     sh "docker login -u \$DOCKER_HUB_USERNAME -p \$DOCKER_HUB_PASSWORD"
-                    sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
+                    sh "docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} oubaidhl/devops:${DOCKER_IMAGE_VERSION}"
+                    sh "docker push oubaidhl/devops:${DOCKER_IMAGE_VERSION}"
                 }
             }
         }
