@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'oubaid-app:latest'
-        DOCKER_HUB_USERNAME ='oubaidhl' 
-        DOCKER_HUB_PASSWORD = '20271489ABed?!'
+        DOCKER_IMAGE_NAME = 'app-back'
+        DOCKER_IMAGE_VERSION = '1.0.0'
+        
     }
     stages {
         stage('Clone') {
@@ -50,24 +50,41 @@ pipeline {
             }
         }
 
-                stage('Build Docker Image') {
+#        stage('Build Docker Image') {
+#            steps {
+#                script {
+#                   sh " docker build -t ${DOCKER_IMAGE_NAME} ."
+#                }
+#            }
+#        }
+
+
+        stage('Build Docker Image') {
             steps {
                 script {
-                   sh " docker build -t ${DOCKER_IMAGE_NAME} ."
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} ."
+                }
+            }
+        }
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                script {
+                    sh "docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}"
+                    sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
                 }
             }
         }
 
 
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
-                    sh "docker tag ${DOCKER_IMAGE_NAME} oubaidhl/devops:latest"
-                    sh "docker push oubaidhl/devops:latest"
-                }
-            }
-        }
+  #      stage('Push Docker Image') {
+  #          steps {
+  #              script {
+  #                  sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+  #                  sh "docker tag ${DOCKER_IMAGE_NAME} oubaidhl/devops:latest"
+  #                  sh "docker push oubaidhl/devops:latest"
+  #              }
+  #          }
+  #      }
 
 
         stage('Remove Docker Compose Containers') {
