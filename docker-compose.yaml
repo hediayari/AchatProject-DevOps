@@ -1,6 +1,6 @@
 version: '3'
 services:
-  oubaid-app:
+  app-back:
     image: app-back:1.0.0
     container_name: app-back
     network_mode: "host"
@@ -11,15 +11,16 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=vagrant
 
-  oubaid-db:
+  app-db:
     image: mysql:latest
     container_name: app-db
     environment:
-      MYSQL_DATABASE: achatdb
       MYSQL_ROOT_PASSWORD: vagrant
+      MYSQL_DATABASE: achatdb
     volumes:
       - mysql_data:/var/lib/mysql
     network_mode: "host"
+
 
 volumes:
   mysql_data:
