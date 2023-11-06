@@ -71,6 +71,9 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<finalName>achat-app</finalName>
+
 	</build>
 
 </project>
