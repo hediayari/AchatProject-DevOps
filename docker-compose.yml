@@ -6,7 +6,7 @@ services:
       restart: unless-stopped
       environment:
         - MYSQL_DATABASE=youssef_DB
-        - MYSQL_ROOT_PASSWORD=null
+        - MYSQL_ALLOW_EMPTY_PASSWORD
       ports:
         - 3306:3306
       volumes:
