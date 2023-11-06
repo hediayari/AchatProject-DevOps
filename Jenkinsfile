@@ -13,7 +13,7 @@ pipeline {
         stage('checkout'){
                         steps{
                         //  deleteDir()
-                         checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-neysho', url: 'https://github.com/Neysho/achat-devops.git']])
+                         checkout scmGit(branches: [[name: '*/aziz']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-neysho', url: 'https://github.com/hediayari/AchatProject-DevOps.git']])
                        }
                   }
             stage('Package Maven'){
@@ -41,6 +41,19 @@ pipeline {
                     failure {
                             slackSend color: "danger", 
                              message: "Pipeline failed in stage 'SonarQube'",
+                             tokenCredentialId: 'slack-alert-bot'
+                     }
+                }
+            }
+
+            stage('Test'){
+                steps{
+                    sh 'mvn test'
+                }
+                post {  
+                    failure {
+                            slackSend color: "danger", 
+                             message: "Pipeline failed at the Testing stage",
                              tokenCredentialId: 'slack-alert-bot'
                      }
                 }
@@ -129,6 +142,9 @@ pipeline {
     post {
             always {
                 script {
+                    emailext attachLog: true, body: 'Here is your Log file.',
+                    compressLog: true, subject: 'Jenkins Notification',
+                    attachmentsPattern: 'backend-scan.txt', to: 'azizamari100@gmail.com'
                     cleanWs()
                 }
               }
