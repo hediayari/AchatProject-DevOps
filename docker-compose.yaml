@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  achat-front:
+    build:
+      context: D:\frontdevops
+      dockerfile: Dockerfile
+    image: hedi1708/achat-front:latest # You can choose to push this image to DockerHub if needed
+    container_name: achat-front
+    ports:
+      - "80:80" # Map Nginx port to host
+
   achat-app:
     image: hedi1708/achat-1.0:1.2
     container_name: achat-app
