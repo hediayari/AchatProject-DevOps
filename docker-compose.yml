@@ -13,7 +13,7 @@ services:
     achat:
       depends_on:
         - mysqldb
-      image: youssef1321/achat:1.0
+      image: youssef1321/achat:latest
       restart: on-failure
       ports:
         - "8082:8082"
