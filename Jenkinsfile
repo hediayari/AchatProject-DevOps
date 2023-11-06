@@ -143,8 +143,8 @@ pipeline {
             always {
                 script {
                     emailext attachLog: true, body: 'Here is your Log file.',
-                    compressLog: true, subject: 'Jenkins Notification',
-                    attachmentsPattern: 'backend-scan.txt', to: 'azizamari100@gmail.com'
+                    subject: 'Jenkins Notification', attachmentsPattern: 'backend-scan.txt',
+                    to: 'azizamari100@gmail.com'
                     cleanWs()
                 }
               }
