@@ -22,10 +22,10 @@ services:
       - "8089:8089"
     environment:
       SPRING_APPLICATION_JSON: '{
-        "SPRING_DATASOURCE_URL": jdbc:mysql://mysqldb:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true",
+        "SPRING_DATASOURCE_URL": "jdbc:mysql://mysqldb:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true",
         "SPRING_DATASOURCE_USERNAME": "root",
-        "SPRING_DATASOURCE_PASSWORD": "",  # Utilisez le même que MYSQL_ROOT_PASSWORD si root est utilisé
-        "SPRING_JPA_HIBERNATE_DDL-AUTO": "update"
+        "SPRING_DATASOURCE_PASSWORD": "",
+        "SPRING_JPA_HIBERNATE_DDL-AUTO": "update",
         "SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT": "org.hibernate.dialect.MySQL5InnoDBDialect"
       }'
     stdin_open: true
