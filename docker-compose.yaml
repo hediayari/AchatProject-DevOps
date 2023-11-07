@@ -18,8 +18,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: vagrant
       MYSQL_DATABASE: achatdb
-    volumes:
-      - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
 
+networks:
+  app-network:
+
+volumes:
+  mysql_data:
