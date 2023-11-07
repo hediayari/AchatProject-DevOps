@@ -6,7 +6,7 @@ services:
     environment:
       - SERVER_SERVLET_CONTEXT_PATH=/SpringMVC
       - SERVER_PORT=8089
-      - SPRING_DATASOURCE_URL=jdbc:mysql://app-db:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://192.168.1.160:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=vagrant
     ports:
