@@ -1,7 +1,7 @@
 package tn.esprit.rh.achat;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -10,13 +10,10 @@ import java.util.List;
 import tn.esprit.rh.achat.controllers.CategorieProduitController;
 import tn.esprit.rh.achat.entities.CategorieProduit;
 import tn.esprit.rh.achat.services.CategorieProduitServiceImpl;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
 public class CategoryProductControllerTest {
 
     // Mockito Section
@@ -25,7 +22,7 @@ public class CategoryProductControllerTest {
     @Mock
     private CategorieProduitServiceImpl categorieProduitService;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
@@ -50,7 +47,7 @@ public class CategoryProductControllerTest {
         // Add your JUnit assertions here to check if the result matches your expectations
         assertEquals(1, result.size());
         CategorieProduit retrievedCategory = result.get(0);
-        assertEquals(1L, retrievedCategory.getIdCategorieProduit().longValue());
+        assertEquals(1L, retrievedCategory.getIdCategorieProduit());
         assertEquals("Category001", retrievedCategory.getCodeCategorie());
         assertEquals("Category001", retrievedCategory.getLibelleCategorie());
     }
