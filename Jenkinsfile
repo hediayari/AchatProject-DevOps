@@ -9,19 +9,19 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']])
             }
         }
 
         stage('Run Mockito Tests') {
             steps {
-                sh 'mvn test -Pmockito' // Adjust the Maven profile as needed
+                sh 'mvn test -Pmockito'
             }
         }
 
         stage('Run JUnit Tests') {
             steps {
-                sh 'mvn test -Pjunit' // Adjust the Maven profile as needed
+                sh 'mvn test -Pjunit'
             }
         }
 

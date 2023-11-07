@@ -53,11 +53,24 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
+		<!-- JUnit 5 -->
 		<dependency>
-   			 <groupId>org.mockito</groupId>
-  			  <artifactId>mockito-core</artifactId>
-  			  <version>5.7.0</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Mockito -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -88,50 +101,6 @@
 			<url>http://192.168.1.160:8081/repository/devops/</url>
 		</repository>
 	</distributionManagement>
-
-	<profiles>
-		<profile>
-			<id>mockito</id>
-			<properties>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.mockito</groupId>
-					<artifactId>mockito-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<testResources>
-					<testResource>
-						<directory>src\test\java\tn\esprit\rh\achat</directory>
-					</testResource>
-				</testResources>
-			</build>
-		</profile>
-
-		<profile>
-			<id>junit</id>
-			<properties>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<version>4.12</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<testResources>
-					<testResource>
-						<directory>src\test\java\tn\esprit\rh\achat</directory>
-					</testResource>
-				</testResources>
-			</build>
-		</profile>
-	</profiles>
-
 
 
 
