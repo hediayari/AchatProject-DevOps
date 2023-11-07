@@ -3,13 +3,14 @@ services:
   app-back:
     image: app-back:1.0.0
     container_name: app-back
-    network_mode: "host"
     environment:
       - SERVER_SERVLET_CONTEXT_PATH=/SpringMVC
       - SERVER_PORT=8089
-      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://app-db:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=vagrant
+    ports:
+      - "8089:8089"
 
   app-db:
     image: mysql:latest
@@ -19,7 +20,6 @@ services:
       MYSQL_DATABASE: achatdb
     volumes:
       - mysql_data:/var/lib/mysql
-    network_mode: "host"
+    ports:
+      - "3306:3306"
 
-volumes:
-  mysql_data:
