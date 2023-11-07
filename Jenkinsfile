@@ -79,5 +79,10 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
+        stage('Start Start Grafana & Prometheus') {
+            steps {
+                sh 'docker start grafana prometheus'
+            }
+        }
     }
 }
