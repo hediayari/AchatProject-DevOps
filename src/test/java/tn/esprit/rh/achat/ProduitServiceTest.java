@@ -67,5 +67,5 @@ public class ProduitServiceTest {
         Assertions.assertEquals(produit.getIdProduit(), result.getIdProduit());
     }
 
-    // ... Ajouter d'autres tests pour les autres méthodes ...
+
 }
