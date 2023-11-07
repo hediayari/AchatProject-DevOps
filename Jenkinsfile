@@ -4,8 +4,8 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'app-back'
         DOCKER_IMAGE_VERSION = '1.0.0'
-        
     }
+
     stages {
         stage('Clone') {
             steps {
@@ -13,6 +13,17 @@ pipeline {
             }
         }
 
+        stage('Run Mockito Tests') {
+            steps {
+                sh 'mvn test -Pmockito' // Adjust the Maven profile as needed
+            }
+        }
+
+        stage('Run JUnit Tests') {
+            steps {
+                sh 'mvn test -Pjunit' // Adjust the Maven profile as needed
+            }
+        }
 
         stage('Clean Maven and Build') {
             steps {
@@ -57,17 +68,16 @@ pipeline {
                 }
             }
         }
+
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
                     sh "docker login -u \$DOCKER_HUB_USERNAME -p \$DOCKER_HUB_PASSWORD"
                     sh "docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} \$DOCKER_HUB_USERNAME/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
                     sh "docker push \$DOCKER_HUB_USERNAME/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
-
                 }
             }
         }
-
 
         stage('Remove Docker Compose Containers') {
             steps {

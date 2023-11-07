@@ -83,6 +83,50 @@
 		</repository>
 	</distributionManagement>
 
-	
+	<profiles>
+		<profile>
+			<id>mockito</id>
+			<properties>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-core</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<testResources>
+					<testResource>
+						<directory>src\test\java\tn\esprit\rh\achat</directory>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
+
+		<profile>
+			<id>junit</id>
+			<properties>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>4.12</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<testResources>
+					<testResource>
+						<directory>src\test\java\tn\esprit\rh\achat</directory>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
+	</profiles>
+
+
+
 
 </project>
