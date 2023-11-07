@@ -4,29 +4,40 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'app-back'
         DOCKER_IMAGE_VERSION = '1.0.0'
-        
     }
+    
     stages {
         stage('Clone') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: 'oubaid']], userRemoteConfigs: [[url: 'https://github.com/hediayari/AchatProject-DevOps.git']]])
             }
         }
-
-
+        
+        stage('Run Mockito Tests') {
+            steps {
+                sh 'mvn test -Pmockito' // Adjust the Maven profile as needed
+            }
+        }
+        
+        stage('Run JUnit Tests') {
+            steps {
+                sh 'mvn test -Pjunit' // Adjust the Maven profile as needed
+            }
+        }
+        
         stage('Clean Maven and Build') {
             steps {
                 sh 'mvn clean'
                 sh 'mvn package'
             }
         }
-
+        
         stage('SonarQube Analysis') {
             steps {
                 script {
                     def scannerHome = tool name: 'SonarQube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     def javaHome = tool name: 'JAVA_HOME', type: 'hudson.model.JDK'
-
+                    
                     withEnv(["JAVA_HOME=${javaHome}", "SONAR_HOST_URL=http://192.168.1.160:9000"]) {
                         withSonarQubeEnv('SonarQube') {
                             sh """
@@ -41,7 +52,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Deploy to Nexus') {
             steps {
                 script {
@@ -49,7 +60,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Build Docker Image') {
             steps {
                 script {
@@ -57,24 +68,23 @@ pipeline {
                 }
             }
         }
+        
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
                     sh "docker login -u \$DOCKER_HUB_USERNAME -p \$DOCKER_HUB_PASSWORD"
                     sh "docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} \$DOCKER_HUB_USERNAME/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
                     sh "docker push \$DOCKER_HUB_USERNAME/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
-
                 }
             }
         }
-
-
+        
         stage('Remove Docker Compose Containers') {
             steps {
                 sh 'docker-compose down'
             }
         }
-
+        
         stage('Start Docker Compose') {
             steps {
                 sh 'docker-compose up -d'
