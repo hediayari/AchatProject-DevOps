@@ -8,15 +8,9 @@ pipeline {
 
     stages {
 
-        stage('Run Mockito Tests') {
+        stage('Test With JUnit And Mockito') {
             steps {
-                sh 'mvn test -Pmockito'
-            }
-        }
-
-        stage('Run JUnit Tests') {
-            steps {
-                sh 'mvn test -Pjunit'
+                sh 'mvn test '
             }
         }
 
