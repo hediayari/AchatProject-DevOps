@@ -23,5 +23,15 @@ services:
         SERVER_PORT: 8089
         SPRING_DATASOURCE_URL:  jdbc:mysql://mysqldb:3306/youssef_DB?createDatabaseIfNotExists=true
         SPRING_DATASOURCE_USERNAME: root
+    achatfront:
+      depends_on:
+        - mysqldb
+        - achat
+      image: youssef1321/achatfront:latest
+      restart: on-failure
+      ports:
+        - "80:80"
+
+
 volumes:
   db:
