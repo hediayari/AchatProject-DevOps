@@ -22,6 +22,16 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+  grafana:
+    image: grafana/grafana
+    user: "admin"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+
   achat-app:
     image: hedi1708/achat-1.0:1.2
     container_name: achat-app
