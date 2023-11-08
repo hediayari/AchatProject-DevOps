@@ -2,7 +2,7 @@ version: '3'
 
 services:
   achat-app:
-    image: hedi1708/achat-1.0:1.2
+    image: hedi1708/achat-1.0:1.4
     container_name: achat-app
     ports:
       - "8089:8089"
