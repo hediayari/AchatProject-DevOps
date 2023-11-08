@@ -3,6 +3,7 @@ services:
   backend:
     image: backend
     container_name: backend
+    restart: unless-stopped
     ports:
       - "8089:8089"
     environment:
@@ -22,6 +23,7 @@ services:
       MYSQL_DATABASE: achatdb
     volumes:
       - mysql_data:/var/lib/mysql
-
+    restart: unless-stopped
+     
 volumes:
   mysql_data:
