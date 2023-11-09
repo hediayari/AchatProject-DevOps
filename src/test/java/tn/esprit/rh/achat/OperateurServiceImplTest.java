@@ -43,10 +43,10 @@ public class OperateurServiceImplTest {
         newOperateur.setPrenom("NewPrenom");
         newOperateur.setPassword("NewPassword");
 
-        // Mock the save method to return the same object that's passed to it
+
         Mockito.when(operateurRepository.save(newOperateur)).thenReturn(newOperateur);
 
-        // Invoke the addOperateur method of operateurService
+
         Operateur addedOperateur = operateurService.addOperateur(newOperateur);
 
         // Assertions
